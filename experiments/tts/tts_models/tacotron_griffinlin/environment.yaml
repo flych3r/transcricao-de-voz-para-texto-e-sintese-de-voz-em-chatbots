@@ -1,0 +1,24 @@
+name: tacotron_griffinlin
+channels:
+  - defaults
+  - conda-forge
+  - pytorch
+dependencies:
+  - python=3.6
+  - pytorch
+  - unidecode
+  - tensorboard
+  - matplotlib
+  - librosa
+  - flask
+  - numpy
+  - scipy
+  - tensorboardx
+  - tqdm
+  - pillow
+  - pydub
+  - textwrap3
+  - pip:
+    - phonemizer
+    - lws
+prefix: /home/ubuntu/miniconda3/envs/tacotron_griffinlin

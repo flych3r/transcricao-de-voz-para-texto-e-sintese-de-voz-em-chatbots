@@ -1,0 +1,25 @@
+name: tacotron_wavernn
+channels:
+  - defaults
+  - conda-forge
+  - pytorch
+dependencies:
+  - python=3.6
+  - pytorch
+  - matplotlib
+  - librosa
+  - pysoundfile
+  - numpy
+  - scipy
+  - tqdm
+  - flask
+  - tensorboard
+  - unidecode
+  - pillow
+  - tensorboardx
+  - pydub
+  - textwrap3
+  - pip:
+    - phonemizer
+    - lws
+prefix: /home/ubuntu/miniconda3/envs/tacotron_wavernn

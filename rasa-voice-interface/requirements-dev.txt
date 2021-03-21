@@ -1,0 +1,5 @@
+-r requirements.txt
+pre-commit
+yamllint
+flake8
+python-dotenv

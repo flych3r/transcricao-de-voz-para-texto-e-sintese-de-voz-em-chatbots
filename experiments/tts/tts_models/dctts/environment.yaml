@@ -1,0 +1,14 @@
+name: dctts
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.6
+  - tensorflow[version='<2.0']
+  - numpy
+  - textwrap3
+  - tqdm
+  - pydub
+  - scipy
+  - librosa
+prefix: /home/ubuntu/miniconda3/envs/dctts
