@@ -1,7 +1,6 @@
 import base64
 import hashlib
 import io
-import os
 import re
 import textwrap
 import time
@@ -13,7 +12,7 @@ try:
     import torch
     import numpy as np
 
-    from .utils import process_audio
+    from utils import process_audio
 
     from TTS.tts.utils.generic_utils import setup_model
     from TTS.vocoder.utils.generic_utils import setup_generator
@@ -21,11 +20,13 @@ try:
     from TTS.tts.utils.text.symbols import symbols, phonemes
     from TTS.utils.audio import AudioProcessor
     from TTS.tts.utils.synthesis import text_to_seqvec, numpy_to_torch
+    from TTS.tts.utils.text.cleaners import phoneme_cleaners
     LIVE_TTS = True
+    model_path = Path('/app/TTS/models/')
 except ModuleNotFoundError:
     LIVE_TTS = False
 
-output_dir = Path(os.path.dirname(os.path.abspath(__file__))) / 'voice_response'
+output_dir = Path('/app') / 'voice_response'
 output_dir.mkdir(parents=True, exist_ok=True)
 
 
@@ -63,11 +64,11 @@ def load_tacotron2(use_cuda):
     -------
     model, audio processor, model config
     """
-    TTS_MODEL = Path('TTS/models/model.pth.tar')
-    TTS_CONFIG = Path('TTS/models/config.json')
+    TTS_MODEL = model_path / 'model.pth.tar'
+    TTS_CONFIG = model_path / 'config.json'
 
     TTS_CONFIG = load_config(TTS_CONFIG)
-    TTS_CONFIG.audio['stats_path'] = str(Path('TTS/models/scale_stats.npy'))
+    TTS_CONFIG.audio['stats_path'] = str(model_path / 'scale_stats.npy')
 
     ap = AudioProcessor(**TTS_CONFIG.audio)
 
@@ -99,11 +100,11 @@ def load_vocoder(use_cuda):
     -------
     model, audio processor, model config
     """
-    VOCODER_MODEL = Path('TTS/models/vocoder_model.pth.tar')
-    VOCODER_CONFIG = Path('TTS/models/vocoder_config.json')
+    VOCODER_MODEL = model_path / 'vocoder_model.pth.tar'
+    VOCODER_CONFIG = model_path / 'vocoder_config.json'
 
     VOCODER_CONFIG = load_config(VOCODER_CONFIG)
-    VOCODER_CONFIG.audio['stats_path'] = str(Path('TTS/models/vocoder_scale_stats.npy'))
+    VOCODER_CONFIG.audio['stats_path'] = str(model_path / 'vocoder_scale_stats.npy')
 
     ap_vocoder = AudioProcessor(**VOCODER_CONFIG['audio'])
 
@@ -209,6 +210,7 @@ async def synthesize_text(sentence: Text) -> Text:
     if fp not in output_dir.glob('*.ogg'):
         if not LIVE_TTS:
             return None
+        sentence = phoneme_cleaners(sentence)
         tts(fp, sentence)
     with open(fp, 'rb') as wav_file:
         encoded_bytes = base64.b64encode(wav_file.read())

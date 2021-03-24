@@ -9,7 +9,7 @@ from typing import List, Optional, Text
 import requests
 from pydub import AudioSegment, silence
 
-from .utils import process_audio
+from utils import process_audio
 
 try:
     from dotenv import load_dotenv
