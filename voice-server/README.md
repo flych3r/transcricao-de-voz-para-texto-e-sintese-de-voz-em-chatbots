@@ -1,4 +1,4 @@
-# Agendador Voice Server
+# Voice Server API
 
 This is the server responsible for STT and TTS
 
