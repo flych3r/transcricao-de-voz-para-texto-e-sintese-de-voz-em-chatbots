@@ -34,12 +34,12 @@ The endpoins are:
 
 Environment variables
 
-- A list of keys for the wit.ai api: `WIT_KEY=["<key 1>", "<key 2>"]
-- A google drive link with the model: `MODEL_LINK=<google-drive-id>
+- A list of keys for the wit.ai api: `WIT_KEY=["<key 1>", "<key 2>"]`
+- A google drive link with the model: `MODEL_LINK=<google-drive-id>`
 
 You can run this as a docker container
 
-- `docker build --tag <image-name> .`
+- `docker build --build-arg MODEL_LINK --tag <image-name> .`
 - `docker run -p 5025:5025 -e WEB_CONCURRENCY=<number-of-workers> <image-name>`
 - If you want to update the model, add the `UPDATE_MODEL=1` variable
 
