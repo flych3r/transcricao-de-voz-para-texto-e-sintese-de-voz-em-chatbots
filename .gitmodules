@@ -1,0 +1,6 @@
+[submodule "voice-api"]
+	path = voice-api
+	url = https://github.com/flych3r/voice-api.git
+[submodule "rasa-voice-interface"]
+	path = rasa-voice-interface
+	url = https://github.com/flych3r/rasa-voice-interface.git
