@@ -1,4 +1,4 @@
-# [TRANSCRIÇÃO DE VOZ PARA TEXTO E SÍNTESE DE VOZ EM CHATBOTS](https://www.overleaf.com/read/zrqkxkzwckcj)
+# [Transcrição de voz para texto e síntese de voz em chatbots](http://www.repositorio.ufc.br/handle/riufc/58955)
 
 [experiemts](experiments): Notebooks utilizados para a avaliação das ferramentas de TTS e STT
 
